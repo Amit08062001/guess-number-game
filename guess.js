@@ -4,18 +4,19 @@ const submit = document.querySelector('#subt');
 let preGuess=document.querySelector('.guesses')
 let guessRemain=document.querySelector('.lastResult')
 const lowOrHi=document.querySelector('.lowOrHi')
-
 const startOver= document.querySelector('.resultParas');
 const p =document.createElement('p');
 let previousGuesses = [];
 let numGuess=1;
 let playgame = true;
+let randomNumbers=[];
 
 if(playgame){
     submit.addEventListener('click',function(event){
         event.preventDefault();
         const guess = parseInt(userInput.value)
         validateGuess(guess)
+        
     });
 }
 
@@ -38,7 +39,7 @@ if(playgame){
     else{
         checkGuess(guess);
         displayGuess(guess);
-        
+      
     }
    }
  }
@@ -69,6 +70,7 @@ if(playgame){
     lowOrHi.innerHTML=`<h1>${message}</h1>`   
   }
 
+
   function endGame(){
     userInput.value=""
     userInput.setAttribute('disabled',true)
@@ -83,18 +85,20 @@ if(playgame){
     const newGameBtn= document.querySelector('#newGame')
     newGameBtn.addEventListener('click',function(){
         randomNumber = parseInt(Math.random()*100+1);
-        preGuess=[];
+        previousGuesses=[];
         numGuess=1
         preGuess.innerHTML='';
         lowOrHi.innerHTML='';
         preGuess.innerHTML = '';
-        guessRemain.innerHTML=`${10-numGuess}`
-        userInput.removeAttribute('disabeld')
+        guessRemain.innerHTML=`${11-numGuess}`
+        userInput.classList.remove('disabeld')
+        userInput.removeAttribute('disabled',true)
         startOver.removeChild(p)
-        playgame=true
+        playgame=true;
 
     })
   }
+ 
 
   
 
